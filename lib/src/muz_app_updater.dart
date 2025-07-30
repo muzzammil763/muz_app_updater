@@ -21,35 +21,6 @@ class UpdaterIOS {
   UpdaterIOS({required this.collectionName, required this.documentName});
 }
 
-class KillSwitchAndroid {
-  final String collectionName;
-  final String documentName;
-
-  KillSwitchAndroid({required this.collectionName, required this.documentName});
-}
-
-class KillSwitchIOS {
-  final String collectionName;
-  final String documentName;
-
-  KillSwitchIOS({required this.collectionName, required this.documentName});
-}
-
-class MaintenanceAndroid {
-  final String collectionName;
-  final String documentName;
-
-  MaintenanceAndroid(
-      {required this.collectionName, required this.documentName});
-}
-
-class MaintenanceIOS {
-  final String collectionName;
-  final String documentName;
-
-  MaintenanceIOS({required this.collectionName, required this.documentName});
-}
-
 // Main Class
 
 class MuzAppUpdater {
@@ -57,10 +28,6 @@ class MuzAppUpdater {
     required BuildContext context,
     UpdaterAndroid? updaterAndroid,
     UpdaterIOS? updaterIOS,
-    KillSwitchAndroid? killSwitchAndroid,
-    KillSwitchIOS? killSwitchIOS,
-    MaintenanceAndroid? maintenanceAndroid,
-    MaintenanceIOS? maintenanceIOS,
     bool setupFirestoreCollections = false,
   }) async {
     print('🚀 [MuzAppUpdater] Initializing...');
@@ -71,10 +38,6 @@ class MuzAppUpdater {
       await _setupFirestoreCollections(
         updaterAndroid: updaterAndroid,
         updaterIOS: updaterIOS,
-        killSwitchAndroid: killSwitchAndroid,
-        killSwitchIOS: killSwitchIOS,
-        maintenanceAndroid: maintenanceAndroid,
-        maintenanceIOS: maintenanceIOS,
       );
       print('✅ [MuzAppUpdater] Firestore collections setup completed');
     }
@@ -84,10 +47,6 @@ class MuzAppUpdater {
       context: context,
       updaterAndroid: updaterAndroid,
       updaterIOS: updaterIOS,
-      killSwitchAndroid: killSwitchAndroid,
-      killSwitchIOS: killSwitchIOS,
-      maintenanceAndroid: maintenanceAndroid,
-      maintenanceIOS: maintenanceIOS,
     );
     print('✅ [MuzAppUpdater] Initialization completed successfully');
   }
@@ -95,10 +54,6 @@ class MuzAppUpdater {
   static Future<void> _setupFirestoreCollections({
     UpdaterAndroid? updaterAndroid,
     UpdaterIOS? updaterIOS,
-    KillSwitchAndroid? killSwitchAndroid,
-    KillSwitchIOS? killSwitchIOS,
-    MaintenanceAndroid? maintenanceAndroid,
-    MaintenanceIOS? maintenanceIOS,
   }) async {
     final firestore = FirebaseFirestore.instance;
     
@@ -134,72 +89,6 @@ class MuzAppUpdater {
           'ios_update_url': 'https://apps.apple.com/app/your-app-id',
         }, SetOptions(merge: true));
         print('✅ [MuzAppUpdater] iOS updater collection setup completed');
-      }
-
-      // Setup Kill Switch Collection
-      if (killSwitchAndroid != null) {
-        print('📝 [MuzAppUpdater] Setting up Android kill switch collection...');
-        await firestore
-            .collection(killSwitchAndroid.collectionName)
-            .doc(killSwitchAndroid.documentName)
-            .set({
-          'android_enabled': false,
-          'android_title': 'App Disabled',
-          'android_message': 'This app has been temporarily disabled.',
-          'ios_enabled': false,
-          'ios_title': 'App Disabled',
-          'ios_message': 'This app has been temporarily disabled.',
-        }, SetOptions(merge: true));
-        print('✅ [MuzAppUpdater] Android kill switch collection setup completed');
-      }
-
-      if (killSwitchIOS != null) {
-        print('📝 [MuzAppUpdater] Setting up iOS kill switch collection...');
-        await firestore
-            .collection(killSwitchIOS.collectionName)
-            .doc(killSwitchIOS.documentName)
-            .set({
-          'android_enabled': false,
-          'android_title': 'App Disabled',
-          'android_message': 'This app has been temporarily disabled.',
-          'ios_enabled': false,
-          'ios_title': 'App Disabled',
-          'ios_message': 'This app has been temporarily disabled.',
-        }, SetOptions(merge: true));
-        print('✅ [MuzAppUpdater] iOS kill switch collection setup completed');
-      }
-
-      // Setup Maintenance Collection
-      if (maintenanceAndroid != null) {
-        print('📝 [MuzAppUpdater] Setting up Android maintenance collection...');
-        await firestore
-            .collection(maintenanceAndroid.collectionName)
-            .doc(maintenanceAndroid.documentName)
-            .set({
-          'android_enabled': false,
-          'android_title': 'Under Maintenance',
-          'android_message': 'The app is currently under maintenance. Please try again later.',
-          'ios_enabled': false,
-          'ios_title': 'Under Maintenance',
-          'ios_message': 'The app is currently under maintenance. Please try again later.',
-        }, SetOptions(merge: true));
-        print('✅ [MuzAppUpdater] Android maintenance collection setup completed');
-      }
-
-      if (maintenanceIOS != null) {
-        print('📝 [MuzAppUpdater] Setting up iOS maintenance collection...');
-        await firestore
-            .collection(maintenanceIOS.collectionName)
-            .doc(maintenanceIOS.documentName)
-            .set({
-          'android_enabled': false,
-          'android_title': 'Under Maintenance',
-          'android_message': 'The app is currently under maintenance. Please try again later.',
-          'ios_enabled': false,
-          'ios_title': 'Under Maintenance',
-          'ios_message': 'The app is currently under maintenance. Please try again later.',
-        }, SetOptions(merge: true));
-        print('✅ [MuzAppUpdater] iOS maintenance collection setup completed');
       }
     } catch (e) {
       print('❌ [MuzAppUpdater] Error setting up Firestore collections: $e');

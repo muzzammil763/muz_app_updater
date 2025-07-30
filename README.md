@@ -1,15 +1,15 @@
 # Muz App Updater
 
-A Flutter package for app update management with Firebase Firestore integration. This package provides a simple way to implement app update checking, kill switch functionality, and maintenance mode in your Flutter applications.
+A Flutter package for app update management with Firebase Firestore integration. This package provides a simple way to implement app update checking in your Flutter applications.
 
 ## Features
 
 - **App Update Checking**: Automatically check for new app versions and prompt users to update
-- **Kill Switch**: Disable your app remotely when needed
-- **Maintenance Mode**: Show maintenance messages to users
+- **Force Update Support**: Require users to update before using the app
 - **Platform-Specific Configuration**: Different settings for Android and iOS
 - **Firebase Firestore Integration**: Store configuration in Firestore
 - **Easy Integration**: Simple initialization with minimal setup
+- **Custom Update URLs**: Support for custom app store URLs
 
 ## Installation
 
@@ -87,38 +87,6 @@ app_updates/
     ├── ios_version: "1.0.1"
     ├── ios_force_update: true/false
     └── ios_update_url: "https://apps.apple.com/app/id..."
-
-kill_switch/
-├── android/
-│   ├── android_enabled: true/false
-│   ├── android_title: "App Disabled"
-│   ├── android_message: "This app has been temporarily disabled."
-│   ├── ios_enabled: true/false
-│   ├── ios_title: "App Disabled"
-│   └── ios_message: "This app has been temporarily disabled."
-└── ios/
-    ├── android_enabled: true/false
-    ├── android_title: "App Disabled"
-    ├── android_message: "This app has been temporarily disabled."
-    ├── ios_enabled: true/false
-    ├── ios_title: "App Disabled"
-    └── ios_message: "This app has been temporarily disabled."
-
-maintenance/
-├── android/
-│   ├── android_enabled: true/false
-│   ├── android_title: "Under Maintenance"
-│   ├── android_message: "The app is currently under maintenance."
-│   ├── ios_enabled: true/false
-│   ├── ios_title: "Under Maintenance"
-│   └── ios_message: "The app is currently under maintenance."
-└── ios/
-    ├── android_enabled: true/false
-    ├── android_title: "Under Maintenance"
-    ├── android_message: "The app is currently under maintenance."
-    ├── ios_enabled: true/false
-    ├── ios_title: "Under Maintenance"
-    └── ios_message: "The app is currently under maintenance."
 ```
 
 ## Usage
@@ -209,10 +177,7 @@ The `MuzAppUpdater.initialize()` method accepts the following parameters:
 - `context`: The BuildContext for showing dialogs
 - `updaterAndroid`: Configuration for Android app updates
 - `updaterIOS`: Configuration for iOS app updates
-- `killSwitchAndroid`: Configuration for Android kill switch
-- `killSwitchIOS`: Configuration for iOS kill switch
-- `maintenanceAndroid`: Configuration for Android maintenance mode
-- `maintenanceIOS`: Configuration for iOS maintenance mode
+- `setupFirestoreCollections`: Set to `true` for first-time setup to automatically create collections
 
 Each configuration object requires:
 - `collectionName`: The Firestore collection name
@@ -232,19 +197,19 @@ flutter run
 
 ## Testing Different Scenarios
 
-1. **Force Update**: Set `forceUpdate: true` in the Firestore document
-2. **Kill Switch**: Set `enabled: true` in the kill_switch document
-3. **Maintenance**: Set `enabled: true` in the maintenance document
+1. **Force Update**: Set `android_force_update: true` or `ios_force_update: true` in the Firestore document
+2. **Version Check**: Update `android_version` or `ios_version` to a newer version than your app
+3. **Custom URLs**: Modify `android_update_url` or `ios_update_url` to point to your app's store page
 
 The app will respond accordingly to these configurations.
 
 ## Dependencies
 
 This package depends on:
-- `firebase_core`: ^4.0.0
-- `cloud_firestore`: ^6.0.0
-- `package_info_plus`: ^8.3.0
-- `url_launcher`: ^6.3.2
+- `firebase_core`: any
+- `cloud_firestore`: any
+- `package_info_plus`: any
+- `url_launcher`: any
 
 ## License
 

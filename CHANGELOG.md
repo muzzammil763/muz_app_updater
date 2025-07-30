@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.0.4
+## 0.0.5
 
-* Added comprehensive logging to all methods for better debugging
-* Added `setupFirestoreCollections` parameter for automatic Firestore setup
-* Enhanced documentation with automatic setup instructions
-* Improved error handling and user experience
-* Added detailed console logs for monitoring app behavior
+* Simplified package to focus only on app update functionality
+* Removed kill switch and maintenance mode features
+* Streamlined API with only updater configurations
+* Updated documentation to reflect simplified functionality
+* Made dependencies more flexible with `any` version constraints
 
 ## 0.0.3
 

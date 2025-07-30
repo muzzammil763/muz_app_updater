@@ -55,22 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
           collectionName: 'app_updates',
           documentName: 'ios',
         ),
-        killSwitchAndroid: KillSwitchAndroid(
-          collectionName: 'kill_switch',
-          documentName: 'android',
-        ),
-        killSwitchIOS: KillSwitchIOS(
-          collectionName: 'kill_switch',
-          documentName: 'ios',
-        ),
-        maintenanceAndroid: MaintenanceAndroid(
-          collectionName: 'maintenance',
-          documentName: 'android',
-        ),
-        maintenanceIOS: MaintenanceIOS(
-          collectionName: 'maintenance',
-          documentName: 'ios',
-        ),
         setupFirestoreCollections: true, // Set to true for first-time setup
       );
       
@@ -134,10 +118,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       SizedBox(height: 8),
                       Text('• Automatic app update checks'),
-                      Text('• Kill switch functionality'),
-                      Text('• Maintenance mode support'),
                       Text('• Platform-specific configurations'),
                       Text('• Firebase Firestore integration'),
+                      Text('• Force update support'),
+                      Text('• Custom update URLs'),
                     ],
                   ),
                 ),

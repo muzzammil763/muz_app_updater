@@ -36,45 +36,7 @@ void main() {
       expect(updater.documentName, 'test_document');
     });
 
-    test('KillSwitchAndroid should be created with correct parameters', () {
-      final killSwitch = KillSwitchAndroid(
-        collectionName: 'test_collection',
-        documentName: 'test_document',
-      );
 
-      expect(killSwitch.collectionName, 'test_collection');
-      expect(killSwitch.documentName, 'test_document');
-    });
-
-    test('KillSwitchIOS should be created with correct parameters', () {
-      final killSwitch = KillSwitchIOS(
-        collectionName: 'test_collection',
-        documentName: 'test_document',
-      );
-
-      expect(killSwitch.collectionName, 'test_collection');
-      expect(killSwitch.documentName, 'test_document');
-    });
-
-    test('MaintenanceAndroid should be created with correct parameters', () {
-      final maintenance = MaintenanceAndroid(
-        collectionName: 'test_collection',
-        documentName: 'test_document',
-      );
-
-      expect(maintenance.collectionName, 'test_collection');
-      expect(maintenance.documentName, 'test_document');
-    });
-
-    test('MaintenanceIOS should be created with correct parameters', () {
-      final maintenance = MaintenanceIOS(
-        collectionName: 'test_collection',
-        documentName: 'test_document',
-      );
-
-      expect(maintenance.collectionName, 'test_collection');
-      expect(maintenance.documentName, 'test_document');
-    });
 
     test('MuzAppUpdater should have static initialize method', () {
       expect(MuzAppUpdater.initialize, isA<Function>());
@@ -107,22 +69,6 @@ class _TestWidgetState extends State<TestWidget> {
           documentName: 'test',
         ),
         updaterIOS: UpdaterIOS(
-          collectionName: 'test',
-          documentName: 'test',
-        ),
-        killSwitchAndroid: KillSwitchAndroid(
-          collectionName: 'test',
-          documentName: 'test',
-        ),
-        killSwitchIOS: KillSwitchIOS(
-          collectionName: 'test',
-          documentName: 'test',
-        ),
-        maintenanceAndroid: MaintenanceAndroid(
-          collectionName: 'test',
-          documentName: 'test',
-        ),
-        maintenanceIOS: MaintenanceIOS(
           collectionName: 'test',
           documentName: 'test',
         ),
