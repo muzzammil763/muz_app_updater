@@ -30,34 +30,95 @@ dependencies:
    - `google-services.json` for Android (place in `android/app/`)
    - `GoogleService-Info.plist` for iOS (place in `ios/Runner/`)
 
-### 2. Firestore Database Structure
+### 2. Automatic Firestore Setup (Recommended)
 
-Create the following collections and documents in your Firestore database:
+For first-time setup, use the `setupFirestoreCollections` parameter to automatically create the required collections:
+
+```dart
+await MuzAppUpdater.initialize(
+  context: context,
+  updaterAndroid: UpdaterAndroid(
+    collectionName: 'app_updates',
+    documentName: 'android',
+  ),
+  updaterIOS: UpdaterIOS(
+    collectionName: 'app_updates',
+    documentName: 'ios',
+  ),
+  killSwitchAndroid: KillSwitchAndroid(
+    collectionName: 'kill_switch',
+    documentName: 'android',
+  ),
+  killSwitchIOS: KillSwitchIOS(
+    collectionName: 'kill_switch',
+    documentName: 'ios',
+  ),
+  maintenanceAndroid: MaintenanceAndroid(
+    collectionName: 'maintenance',
+    documentName: 'android',
+  ),
+  maintenanceIOS: MaintenanceIOS(
+    collectionName: 'maintenance',
+    documentName: 'ios',
+  ),
+  setupFirestoreCollections: true, // Set to true for first-time setup
+);
+```
+
+After the collections are created successfully, you can set this parameter to `false` or remove it entirely.
+
+### 3. Manual Firestore Database Structure (Alternative)
+
+If you prefer to create the collections manually, use this structure:
 
 ```
 app_updates/
 ├── android/
-│   ├── version: "1.0.1"
-│   ├── forceUpdate: true/false
-│   └── downloadUrl: "https://play.google.com/store/apps/details?id=..."
+│   ├── android_version: "1.0.1"
+│   ├── android_force_update: true/false
+│   ├── android_update_url: "https://play.google.com/store/apps/details?id=..."
+│   ├── ios_version: "1.0.1"
+│   ├── ios_force_update: true/false
+│   └── ios_update_url: "https://apps.apple.com/app/id..."
 └── ios/
-    ├── version: "1.0.1"
-    ├── forceUpdate: true/false
-    └── downloadUrl: "https://apps.apple.com/app/id..."
+    ├── android_version: "1.0.1"
+    ├── android_force_update: true/false
+    ├── android_update_url: "https://play.google.com/store/apps/details?id=..."
+    ├── ios_version: "1.0.1"
+    ├── ios_force_update: true/false
+    └── ios_update_url: "https://apps.apple.com/app/id..."
 
 kill_switch/
 ├── android/
-│   └── enabled: true/false
+│   ├── android_enabled: true/false
+│   ├── android_title: "App Disabled"
+│   ├── android_message: "This app has been temporarily disabled."
+│   ├── ios_enabled: true/false
+│   ├── ios_title: "App Disabled"
+│   └── ios_message: "This app has been temporarily disabled."
 └── ios/
-    └── enabled: true/false
+    ├── android_enabled: true/false
+    ├── android_title: "App Disabled"
+    ├── android_message: "This app has been temporarily disabled."
+    ├── ios_enabled: true/false
+    ├── ios_title: "App Disabled"
+    └── ios_message: "This app has been temporarily disabled."
 
 maintenance/
 ├── android/
-│   ├── enabled: true/false
-│   └── message: "App is under maintenance"
+│   ├── android_enabled: true/false
+│   ├── android_title: "Under Maintenance"
+│   ├── android_message: "The app is currently under maintenance."
+│   ├── ios_enabled: true/false
+│   ├── ios_title: "Under Maintenance"
+│   └── ios_message: "The app is currently under maintenance."
 └── ios/
-    ├── enabled: true/false
-    └── message: "App is under maintenance"
+    ├── android_enabled: true/false
+    ├── android_title: "Under Maintenance"
+    ├── android_message: "The app is currently under maintenance."
+    ├── ios_enabled: true/false
+    ├── ios_title: "Under Maintenance"
+    └── ios_message: "The app is currently under maintenance."
 ```
 
 ## Usage

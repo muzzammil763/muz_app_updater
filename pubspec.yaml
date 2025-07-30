@@ -1,6 +1,6 @@
 name: muz_app_updater
 description: A Flutter package for app update management with Firebase Firestore integration.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/muzzammil763/muz_app_updater
 
 environment:

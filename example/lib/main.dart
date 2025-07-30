@@ -71,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
           collectionName: 'maintenance',
           documentName: 'ios',
         ),
+        setupFirestoreCollections: true, // Set to true for first-time setup
       );
       
       setState(() {
