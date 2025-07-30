@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+* Made dependencies more flexible for better compatibility
+* Users can now use their own dependency versions
+* Improved package compatibility with different Flutter projects
+
 ## 0.0.2
 
 * Fixed dependency version conflicts
@@ -7,6 +13,7 @@
 * Improved test coverage and reliability
 * Enhanced documentation and examples
 * Fixed linter issues and code quality improvements
+* Made dependencies more flexible for better compatibility
 
 ## 0.0.1
 
