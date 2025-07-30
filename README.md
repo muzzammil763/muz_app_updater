@@ -17,7 +17,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  muz_app_updater: ^0.0.1
+  muz_app_updater: ^0.0.2
 ```
 
 ## Setup
@@ -180,10 +180,10 @@ The app will respond accordingly to these configurations.
 ## Dependencies
 
 This package depends on:
-- `firebase_core`: ^2.24.2
-- `cloud_firestore`: ^4.13.6
-- `package_info_plus`: ^4.2.0
-- `url_launcher`: ^6.2.2
+- `firebase_core`: ^4.0.0
+- `cloud_firestore`: ^6.0.0
+- `package_info_plus`: ^8.3.0
+- `url_launcher`: ^6.3.2
 
 ## License
 
